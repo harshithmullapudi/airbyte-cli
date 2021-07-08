@@ -8,10 +8,17 @@ import (
 )
 
 func PaginateJobs(configId string, configType string) (models.Jobs, error) {
-	jobs, _ := GetJobs(configId, configType)
 	logger.Log.Info("Fetching jobs from API for connection " + configId)
 	logger.Log.Info("With Config Type: " + configType)
+	jobs, _ := GetJobs(configId, configType)
 	logger.Log.Info("Total jobs: " + fmt.Sprintf("%d", len(jobs)))
 
 	return jobs, nil
+}
+
+func FetchJob(jobId int) (models.GetJobResponse, error) {
+	logger.Log.Info("Fetching job from API for id " + fmt.Sprint(jobId))
+	job, _ := GetJob(jobId)
+
+	return job, nil
 }

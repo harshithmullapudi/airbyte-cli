@@ -1,6 +1,8 @@
 package get
 
 import (
+	"strconv"
+
 	"github.com/harshithmullapudi/airbyte/airbyte"
 	"github.com/harshithmullapudi/airbyte/models"
 	"github.com/spf13/cobra"
@@ -32,7 +34,34 @@ var JobsSubCmd = &cobra.Command{
 	},
 }
 
+var JobSubCmd = &cobra.Command{
+	Use:   "job [jobId]",
+	Short: "Get job",
+	Long: `Fetch all information about job.
+
+	You can use page(p) and offset(o) to fetch sources respectively`,
+	Run: func(cmd *cobra.Command, args []string) {
+		var jobId int
+		jobId, _ = strconv.Atoi(args[0])
+
+		format, _ := cmd.Flags().GetString("format")
+
+		job, err := airbyte.FetchJob(jobId)
+
+		if err != nil {
+			cobra.CheckErr(err)
+		}
+
+		if format == "table" {
+			airbyte.PrintJobTable(job)
+		} else {
+		}
+	},
+}
+
 func init() {
 	JobsSubCmd.PersistentFlags().StringP("format", "f", "table", "Print format")
 	JobsSubCmd.PersistentFlags().StringP("type", "t", "sync", "Config Type")
+
+	JobSubCmd.PersistentFlags().StringP("format", "f", "table", "Print format")
 }

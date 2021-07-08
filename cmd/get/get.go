@@ -39,6 +39,7 @@ func init() {
 	GetCmd.AddCommand(SourceSubCmd)
 	GetCmd.AddCommand(ConnectionSubCmd)
 	GetCmd.AddCommand(JobsSubCmd)
+	GetCmd.AddCommand(JobSubCmd)
 
 	// Here you will define your flags and configuration settings.
 

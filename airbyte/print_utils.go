@@ -116,3 +116,18 @@ func PrintJobsTable(jobs models.Jobs) {
 	}
 	t.Render()
 }
+
+func PrintJobTable(job models.GetJobResponse) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Job Id", "Config Id", "Config Type", "Created At", "Status", "Total Attempts", "Records Synced"})
+	var attemtStatus models.Attempt
+	for _, a := range job.Attempts {
+		if a.Attempt.Status == "succeeded" {
+			attemtStatus = a.Attempt
+		}
+	}
+
+	t.AppendRow([]interface{}{1, job.Job.Id, job.Job.ConfigId, job.Job.ConfigType, job.Job.CreatedAt, job.Job.Status, len(job.Attempts), attemtStatus.RecordsSynced})
+	t.Render()
+}

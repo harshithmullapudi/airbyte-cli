@@ -24,6 +24,10 @@ type JobDetail struct {
 	Status     string
 }
 
+type Logs struct {
+	LogLines []string
+}
+
 type Jobs []Job
 
 type JobsResponse struct {
@@ -37,8 +41,12 @@ type Pagination struct {
 	RowOffset int `json:"rowOffset"`
 }
 
-type JobsPostBody struct {
-	ConfigTypes []string   `json:configTypes`
-	ConfigId    string     `json:configTypes`
-	Pagination  Pagination `json:pagination`
+type GetAttempt struct {
+	Attempt Attempt
+	Logs    Logs
+}
+
+type GetJobResponse struct {
+	Job      JobDetail
+	Attempts []GetAttempt
 }

@@ -14,3 +14,4 @@ var GET_CONNECTIONS = CONNECTIONS + "/list"
 var GET_CONNECTION = CONNECTIONS + "/get"
 
 var GET_JOBS = JOBS + "/list"
+var GET_JOB = JOBS + "/get"
