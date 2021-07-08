@@ -36,6 +36,7 @@ func init() {
 
 	// sub commands for get
 	searchCmd.AddCommand(SourcesSearchCmd)
+	searchCmd.AddCommand(ConnectionsSearchCmd)
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

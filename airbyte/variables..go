@@ -2,7 +2,7 @@ package airbyte
 
 var SOURCES = "/api/v1/sources"
 var WORKSPACES = "/api/v1/workspaces"
-var CONNECTIONS = "/api/v1/connections"
+var CONNECTIONS = "/api/v1/web_backend/connections"
 
 var GET_WORKSPACES = WORKSPACES + "/get"
 

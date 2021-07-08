@@ -25,6 +25,7 @@ type Connection struct {
 	SyncCatalog     SyncCatalog
 	Schedule        Schedule
 	Status          string
+	Source          Source
 }
 
 type Connections []Connection
