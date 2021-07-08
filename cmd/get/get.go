@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package cmd
+package get
 
 import (
 	"github.com/harshithmullapudi/airbyte/logger"
@@ -21,7 +21,7 @@ import (
 )
 
 // getCmd represents the get command
-var getCmd = &cobra.Command{
+var GetCmd = &cobra.Command{
 	Use:   "get [sub]",
 	Args:  cobra.MinimumNArgs(1),
 	Short: "Get details about sources, destinations, connections",
@@ -32,14 +32,13 @@ var getCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getCmd)
-
 	// sub commands for get
-	getCmd.AddCommand(SourcesSubCmd)
-	getCmd.AddCommand(DestinationsSubCmd)
-	getCmd.AddCommand(ConnectionsSubCmd)
-	getCmd.AddCommand(SourceSubCmd)
-	getCmd.AddCommand(ConnectionSubCmd)
+	GetCmd.AddCommand(SourcesSubCmd)
+	GetCmd.AddCommand(DestinationsSubCmd)
+	GetCmd.AddCommand(ConnectionsSubCmd)
+	GetCmd.AddCommand(SourceSubCmd)
+	GetCmd.AddCommand(ConnectionSubCmd)
+	GetCmd.AddCommand(JobsSubCmd)
 
 	// Here you will define your flags and configuration settings.
 

@@ -15,17 +15,20 @@ type Schedule struct {
 }
 
 type Connection struct {
-	ConnectionId    string
-	Name            string
-	NamespaceFormat string
-	Prefix          string
-	SourceId        string
-	DestinationId   string
-	OperationIds    []string
-	SyncCatalog     SyncCatalog
-	Schedule        Schedule
-	Status          string
-	Source          Source
+	ConnectionId           string
+	Name                   string
+	NamespaceFormat        string
+	Prefix                 string
+	SourceId               string
+	DestinationId          string
+	OperationIds           []string
+	SyncCatalog            SyncCatalog
+	Schedule               Schedule
+	Status                 string
+	Source                 Source
+	LatestSyncJobCreatedAt int64
+	LatestSyncJobStatus    string
+	IsSyncing              bool
 }
 
 type Connections []Connection

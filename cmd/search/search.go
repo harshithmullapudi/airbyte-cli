@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package cmd
+package search
 
 import (
 	"github.com/harshithmullapudi/airbyte/logger"
@@ -21,7 +21,7 @@ import (
 )
 
 // searchCmd represents the search command
-var searchCmd = &cobra.Command{
+var SearchCmd = &cobra.Command{
 	Use:   "search",
 	Args:  cobra.MinimumNArgs(1),
 	Short: "Search in sources",
@@ -32,11 +32,10 @@ var searchCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(searchCmd)
 
 	// sub commands for get
-	searchCmd.AddCommand(SourcesSearchCmd)
-	searchCmd.AddCommand(ConnectionsSearchCmd)
+	SearchCmd.AddCommand(SourcesSearchCmd)
+	SearchCmd.AddCommand(ConnectionsSearchCmd)
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

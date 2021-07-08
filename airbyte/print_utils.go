@@ -61,9 +61,9 @@ func PrintSource(source models.Source) {
 func PrintConnectionsTable(connections models.Connections) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"#", "Connection Id", "Name", "Source Id", "Source Name", "Destination Id", "Schedule", "Status"})
+	t.AppendHeader(table.Row{"#", "Connection Id", "Source Id", "Source Name", "Destination Id", "Schedule", "Status", "Sync Status"})
 	for index, c := range connections {
-		t.AppendRow([]interface{}{index + 1, c.ConnectionId, c.Name, c.SourceId, c.Source.Name, c.DestinationId, c.Schedule, c.Status})
+		t.AppendRow([]interface{}{index + 1, c.ConnectionId, c.SourceId, c.Source.Name, c.DestinationId, c.Schedule, c.Status, c.LatestSyncJobStatus})
 	}
 	t.Render()
 }
@@ -71,8 +71,8 @@ func PrintConnectionsTable(connections models.Connections) {
 func PrintConnectionTable(connection models.Connection) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"#", "Connection Id", "Name", "Source Id", "Source Name", "Destination Id", "Schedule", "Status"})
-	t.AppendRow([]interface{}{1, connection.ConnectionId, connection.Name, connection.SourceId, connection.Source.Name, connection.DestinationId, connection.Schedule, connection.Status})
+	t.AppendHeader(table.Row{"#", "Connection Id", "Source Id", "Source Name", "Destination Id", "Schedule", "Status", "Sync Status"})
+	t.AppendRow([]interface{}{1, connection.ConnectionId, connection.SourceId, connection.Source.Name, connection.DestinationId, connection.Schedule, connection.Status, connection.LatestSyncJobStatus})
 	t.Render()
 }
 
@@ -98,4 +98,21 @@ func PrintConnection(connection models.Connection) {
 	}
 
 	fmt.Println(string(b))
+}
+
+func PrintJobsTable(jobs models.Jobs) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Job Id", "Config Id", "Config Type", "Created At", "Status", "Records Synced"})
+	for index, j := range jobs {
+		var attemtStatus models.Attempt
+		for _, a := range j.Attempts {
+			if a.Status == "succeeded" {
+				attemtStatus = a
+			}
+		}
+
+		t.AppendRow([]interface{}{index + 1, j.Job.Id, j.Job.ConfigId, j.Job.ConfigType, j.Job.CreatedAt, j.Job.Status, attemtStatus.RecordsSynced})
+	}
+	t.Render()
 }

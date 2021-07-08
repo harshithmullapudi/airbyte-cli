@@ -1,25 +1,25 @@
-package cmd
+package search
 
 import (
 	"github.com/harshithmullapudi/airbyte/airbyte"
 	"github.com/spf13/cobra"
 )
 
-var ConnectionsSearchCmd = &cobra.Command{
-	Use:   "connections",
+var SourcesSearchCmd = &cobra.Command{
+	Use:   "sources",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Search connections",
-	Long:  `Search all connections.`,
+	Short: "Search sources",
+	Long:  `Search all sources.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var searchString string = args[0]
 
-		connections, err := airbyte.SearchConnection(searchString)
+		sources, err := airbyte.SearchSource(searchString)
 
 		if err != nil {
 			cobra.CheckErr(err)
 			return
 		}
 
-		airbyte.PrintConnectionsTable(connections)
+		airbyte.PrintSourcesTable(sources)
 	},
 }
