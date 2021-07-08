@@ -103,7 +103,7 @@ func PrintConnection(connection models.Connection) {
 func PrintJobsTable(jobs models.Jobs) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"#", "Job Id", "Config Id", "Config Type", "Created At", "Status", "Records Synced"})
+	t.AppendHeader(table.Row{"#", "Job Id", "Config Id", "Config Type", "Created At", "Status", "Total Attempts", "Records Synced"})
 	for index, j := range jobs {
 		var attemtStatus models.Attempt
 		for _, a := range j.Attempts {
@@ -112,7 +112,7 @@ func PrintJobsTable(jobs models.Jobs) {
 			}
 		}
 
-		t.AppendRow([]interface{}{index + 1, j.Job.Id, j.Job.ConfigId, j.Job.ConfigType, j.Job.CreatedAt, j.Job.Status, attemtStatus.RecordsSynced})
+		t.AppendRow([]interface{}{index + 1, j.Job.Id, j.Job.ConfigId, j.Job.ConfigType, j.Job.CreatedAt, j.Job.Status, len(j.Attempts), attemtStatus.RecordsSynced})
 	}
 	t.Render()
 }
