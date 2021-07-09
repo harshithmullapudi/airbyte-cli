@@ -61,9 +61,9 @@ func PrintSource(source models.Source) {
 func PrintConnectionsTable(connections models.Connections) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"#", "Connection Id", "Source Id", "Source Name", "Destination Id", "Schedule", "Status", "Sync Status"})
+	t.AppendHeader(table.Row{"#", "Connection Id", "Source Id", "Name", "Source Name", "Destination Id", "Schedule", "Status", "Sync Status"})
 	for index, c := range connections {
-		t.AppendRow([]interface{}{index + 1, c.ConnectionId, c.SourceId, c.Source.Name, c.DestinationId, c.Schedule, c.Status, c.LatestSyncJobStatus})
+		t.AppendRow([]interface{}{index + 1, c.ConnectionId, c.SourceId, c.Source.Name, c.Source.SourceName, c.DestinationId, c.Schedule, c.Status, c.LatestSyncJobStatus})
 	}
 	t.Render()
 }
@@ -71,8 +71,8 @@ func PrintConnectionsTable(connections models.Connections) {
 func PrintConnectionTable(connection models.Connection) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"#", "Connection Id", "Source Id", "Source Name", "Destination Id", "Schedule", "Status", "Sync Status"})
-	t.AppendRow([]interface{}{1, connection.ConnectionId, connection.SourceId, connection.Source.Name, connection.DestinationId, connection.Schedule, connection.Status, connection.LatestSyncJobStatus})
+	t.AppendHeader(table.Row{"#", "Connection Id", "Source Id", "Name", "Source Name", "Destination Id", "Schedule", "Status", "Sync Status"})
+	t.AppendRow([]interface{}{1, connection.ConnectionId, connection.SourceId, connection.Source.Name, connection.Source.SourceName, connection.DestinationId, connection.Schedule, connection.Status, connection.LatestSyncJobStatus})
 	t.Render()
 }
 

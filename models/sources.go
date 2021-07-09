@@ -1,5 +1,14 @@
 package models
 
+type SourceDefinition struct {
+	SourceDefinitionId string
+	Name               string
+	DockerRepository   string
+	DockerImageTag     string
+	DocumentationUrl   string
+	Icon               string
+}
+
 type Source struct {
 	SourceDefinitionId      string
 	SourceId                string
@@ -7,6 +16,7 @@ type Source struct {
 	ConnectionConfiguration map[string]interface{}
 	Name                    string
 	SourceName              string
+	SourceDefinition        SourceDefinition
 }
 
 type Sources []Source
