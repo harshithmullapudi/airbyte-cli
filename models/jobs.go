@@ -19,8 +19,8 @@ type JobDetail struct {
 	Id         int64
 	ConfigType string
 	ConfigId   string
-	CreatedAt  int
-	UpdatedAt  int
+	CreatedAt  int64
+	UpdatedAt  int64
 	Status     string
 }
 

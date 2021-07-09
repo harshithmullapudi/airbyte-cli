@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/harshithmullapudi/airbyte/models"
@@ -112,7 +113,10 @@ func PrintJobsTable(jobs models.Jobs) {
 			}
 		}
 
-		t.AppendRow([]interface{}{index + 1, j.Job.Id, j.Job.ConfigId, j.Job.ConfigType, j.Job.CreatedAt, j.Job.Status, len(j.Attempts), attemtStatus.RecordsSynced})
+		unixTimeUTC := time.Unix(j.Job.CreatedAt, 0)
+		unitTimeInRFC3339 := unixTimeUTC.Format(time.RFC3339)
+
+		t.AppendRow([]interface{}{index + 1, j.Job.Id, j.Job.ConfigId, j.Job.ConfigType, unitTimeInRFC3339, j.Job.Status, len(j.Attempts), attemtStatus.RecordsSynced})
 	}
 	t.Render()
 }
@@ -128,6 +132,9 @@ func PrintJobTable(job models.GetJobResponse) {
 		}
 	}
 
-	t.AppendRow([]interface{}{1, job.Job.Id, job.Job.ConfigId, job.Job.ConfigType, job.Job.CreatedAt, job.Job.Status, len(job.Attempts), attemtStatus.RecordsSynced})
+	unixTimeUTC := time.Unix(job.Job.CreatedAt, 0)
+	unitTimeInRFC3339 := unixTimeUTC.Format(time.RFC3339)
+
+	t.AppendRow([]interface{}{1, job.Job.Id, job.Job.ConfigId, job.Job.ConfigType, unitTimeInRFC3339, job.Job.Status, len(job.Attempts), attemtStatus.RecordsSynced})
 	t.Render()
 }
