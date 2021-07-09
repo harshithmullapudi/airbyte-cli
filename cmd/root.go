@@ -56,7 +56,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default searhes for file .airbyte.yaml in current directory)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default searhes for file $HOME/.airbyte.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -70,13 +70,29 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
+	dirname, err := os.UserHomeDir()
+
+	if err != nil {
+		cobra.CheckErr(err)
+	}
+
+	_, err = os.Stat(dirname + "/.airbyte.yaml")
+
+	if os.IsNotExist(err) {
+		f, e := os.Create(dirname + "/.airbyte.yaml")
+		if e != nil {
+			cobra.CheckErr(err)
+		}
+		defer f.Close()
+	}
+
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
 
 		// Search config in home directory with name ".airbyte" (without extension).
-		viper.AddConfigPath(".")
+		viper.AddConfigPath(dirname)
 		viper.SetConfigName(".airbyte")
 	}
 
