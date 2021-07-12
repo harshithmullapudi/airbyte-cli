@@ -26,6 +26,7 @@ type Connection struct {
 	Schedule               Schedule
 	Status                 string
 	Source                 Source
+	Destination            Destination
 	LatestSyncJobCreatedAt int64
 	LatestSyncJobStatus    string
 	IsSyncing              bool

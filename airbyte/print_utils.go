@@ -57,6 +57,50 @@ func PrintSource(source models.Source) {
 	fmt.Println(string(b))
 }
 
+func PrintDestinationsTable(destinations models.Destinations) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Destination Definition Id", "Destination Id", "Name", "Destination Name"})
+	for index, d := range destinations {
+		t.AppendRow([]interface{}{index + 1, d.DestinationDefinitionId, d.DestinationId, d.Name, d.DestinationName})
+	}
+	t.Render()
+}
+
+func PrintDestinationTable(destination models.Destination) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Destination Definition Id", "Destination Id", "Name", "Destination Name"})
+
+	t.AppendRow([]interface{}{1, destination.DestinationDefinitionId, destination.DestinationId, destination.Name, destination.DestinationName})
+
+	t.Render()
+}
+
+func PrintDestinations(destinations models.Destinations) {
+
+	b, err := json.MarshalIndent(destinations, "", "  ")
+
+	if err != nil {
+		logger.Error(err)
+		return
+	}
+
+	fmt.Println(string(b))
+}
+
+func PrintDestination(destination models.Destination) {
+
+	b, err := json.MarshalIndent(destination, "", "  ")
+
+	if err != nil {
+		logger.Error(err)
+		return
+	}
+
+	fmt.Println(string(b))
+}
+
 //Conenctions print
 
 func PrintConnectionsTable(connections models.Connections) {

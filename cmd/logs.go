@@ -9,7 +9,10 @@ import (
 )
 
 var logsCmd = &cobra.Command{
-	Use: "logs [jobId]",
+	Use:   "logs [jobId]",
+	Short: "Fetch logs for a job",
+	Long: `Fetch logs for a job
+	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var jobId int
 		jobId, _ = strconv.Atoi(args[0])

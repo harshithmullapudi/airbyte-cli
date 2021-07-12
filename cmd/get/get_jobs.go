@@ -11,9 +11,7 @@ import (
 var JobsSubCmd = &cobra.Command{
 	Use:   "jobs [configId] [configType]",
 	Short: "Get jobs",
-	Long: `Fetch all jobs with pagination.
-
-	You can use page(p) and offset(o) to fetch sources respectively`,
+	Long:  `Fetch all jobs.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var configId string = args[0]
 
@@ -37,9 +35,7 @@ var JobsSubCmd = &cobra.Command{
 var JobSubCmd = &cobra.Command{
 	Use:   "job [jobId]",
 	Short: "Get job",
-	Long: `Fetch all information about job.
-
-	You can use page(p) and offset(o) to fetch sources respectively`,
+	Long:  `Fetch all information about job.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var jobId int
 		jobId, _ = strconv.Atoi(args[0])

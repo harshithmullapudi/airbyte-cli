@@ -32,13 +32,8 @@ import (
 // setCmd represents the set command
 var setCmd = &cobra.Command{
 	Use:   "set-config",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Set your airbyte url and workspaceID",
+	Long:  `You need to set airbyte url and workspaceID`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Print("Enter airbyte api URL here: ")
 		URL := bufio.NewScanner(os.Stdin)
