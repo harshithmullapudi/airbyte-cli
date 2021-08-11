@@ -8,10 +8,8 @@ import (
 
 var DestinationsSubCmd = &cobra.Command{
 	Use:   "destinations",
-	Short: "Fetch all destinations",
-	Long: `Fetch all destinations with pagination.
-
-	You can use page(p) and offset(o) to fetch destinations respectively`,
+	Short: "Return all destinations with pagination",
+	Long:  `Return all destinations with pagination. You can use page(p) and offset(o) to fetch destinations respectively. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/destinations/list`,
 	Run: func(cmd *cobra.Command, args []string) {
 		number, _ := cmd.Flags().GetInt("number")
 		offset, _ := cmd.Flags().GetInt("offset")
@@ -34,8 +32,8 @@ var DestinationsSubCmd = &cobra.Command{
 var DestinationSubCmd = &cobra.Command{
 	Use:   "destination [destination Id]",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Get destination details using destination Id",
-	Long:  `This will return destination details either in table/json format. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/destinations/get`,
+	Short: "Get configured destination",
+	Long:  `Get configured destination in table/json format. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/destinations/get`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var destinationId string = args[0]
 		format, _ := cmd.Flags().GetString("format")

@@ -33,14 +33,8 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "airbyte",
-	Short: "Short airbyte util",
-	Long: `You can use this tool to fetch
-	Sources, Destinations, Connections, Jobs
-	and Logs.
-	`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Short: "CLI tool for Airbyte",
+	Long:  `CLI tool for Airbyte`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

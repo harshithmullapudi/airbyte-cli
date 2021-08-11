@@ -8,10 +8,8 @@ import (
 
 var ConnectionsSubCmd = &cobra.Command{
 	Use:   "connections",
-	Short: "Get connections",
-	Long: `Fetch all connections with pagination.
-
-	You can use page(p) and offset(o) to fetch sources respectively`,
+	Short: "Returns all connections with pagination",
+	Long:  `Returns all connections with pagination. You can use page(p) and offset(o) to fetch connections respectively. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/connections/list`,
 	Run: func(cmd *cobra.Command, args []string) {
 		number, _ := cmd.Flags().GetInt("number")
 		offset, _ := cmd.Flags().GetInt("offset")
@@ -35,8 +33,9 @@ var ConnectionsSubCmd = &cobra.Command{
 
 var ConnectionSubCmd = &cobra.Command{
 	Use:   "connection [connection Id]",
-	Short: "Get source details using connection Id",
-	Long:  `This will return connection details either in table/json format. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/connections/get`,
+	Args:  cobra.MinimumNArgs(1),
+	Short: "Get a connection",
+	Long:  `Get a connection in table/json format. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/connections/get`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var connectionId string = args[0]
 		format, _ := cmd.Flags().GetString("format")

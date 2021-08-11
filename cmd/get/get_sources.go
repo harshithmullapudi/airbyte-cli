@@ -8,10 +8,8 @@ import (
 
 var SourcesSubCmd = &cobra.Command{
 	Use:   "sources",
-	Short: "Get sources",
-	Long: `Fetch all sources with pagination.
-
-You can use page(p) and offset(o) to fetch sources respectively`,
+	Short: "Return all sources",
+	Long:  `Return all sources with pagination. You can use page(p) and offset(o) to fetch sources respectively. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/sources/list`,
 	Run: func(cmd *cobra.Command, args []string) {
 		number, _ := cmd.Flags().GetInt("number")
 		offset, _ := cmd.Flags().GetInt("offset")
@@ -34,8 +32,8 @@ You can use page(p) and offset(o) to fetch sources respectively`,
 var SourceSubCmd = &cobra.Command{
 	Use:   "source [source Id]",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Get source details using source Id",
-	Long:  `This will return source details either in table/json format. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/sources/get`,
+	Short: "Get a connection",
+	Long:  `Get a connection in table/json format. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/sources/get`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var sourceId string = args[0]
 		format, _ := cmd.Flags().GetString("format")

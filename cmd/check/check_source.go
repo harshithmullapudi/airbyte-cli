@@ -11,8 +11,9 @@ import (
 
 var SourceSubCmd = &cobra.Command{
 	Use:   "source [source Id]",
+	Args:  cobra.MinimumNArgs(1),
 	Short: "Check source",
-	Long:  `Check whether the source is valid or not`,
+	Long:  `Check whether the source is valid or not. Check this https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/sources/check_connection`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var sourceId string = args[0]
 		var sourceCheck models.SourceCheckResponse
