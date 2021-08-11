@@ -42,6 +42,7 @@ func FetchConnection(connectionId string) (models.Connection, error) {
 	return connection, err
 }
 
+// Search in connections from a given string
 func SearchConnection(searchString string) (models.Connections, error) {
 	if searchString == "" {
 		return models.Connections{}, errors.New("you passed an empty string")

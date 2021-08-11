@@ -12,7 +12,6 @@ import (
 )
 
 //Sources Print
-
 func PrintSourcesTable(sources models.Sources) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
@@ -57,6 +56,7 @@ func PrintSource(source models.Source) {
 	fmt.Println(string(b))
 }
 
+// Print Destinations
 func PrintDestinationsTable(destinations models.Destinations) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
@@ -101,8 +101,7 @@ func PrintDestination(destination models.Destination) {
 	fmt.Println(string(b))
 }
 
-//Conenctions print
-
+//Connections print
 func PrintConnectionsTable(connections models.Connections) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
@@ -145,6 +144,7 @@ func PrintConnection(connection models.Connection) {
 	fmt.Println(string(b))
 }
 
+// Print Jobs
 func PrintJobsTable(jobs models.Jobs) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
@@ -180,5 +180,16 @@ func PrintJobTable(job models.GetJobResponse) {
 	unitTimeInRFC3339 := unixTimeUTC.Format(time.RFC3339)
 
 	t.AppendRow([]interface{}{1, job.Job.Id, job.Job.ConfigId, job.Job.ConfigType, unitTimeInRFC3339, job.Job.Status, len(job.Attempts), attemtStatus.RecordsSynced})
+	t.Render()
+}
+
+// Print Source Definition
+func PrintSourceDefinitionsTable(source_definitions models.SourceDefinitions) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Source Definition Id", "Name", "Docker Repository", "Docker Image Tag"})
+	for index, sd := range source_definitions {
+		t.AppendRow([]interface{}{index + 1, sd.SourceDefinitionId, sd.Name, sd.DockerRepository, sd.DockerImageTag})
+	}
 	t.Render()
 }

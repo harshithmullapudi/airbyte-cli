@@ -19,8 +19,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/harshithmullapudi/airbyte/cmd/check"
 	"github.com/harshithmullapudi/airbyte/cmd/get"
 	"github.com/harshithmullapudi/airbyte/cmd/search"
+
 	"github.com/spf13/cobra"
 
 	"github.com/spf13/viper"
@@ -63,6 +65,7 @@ func init() {
 	// Add sub commands
 	rootCmd.AddCommand(get.GetCmd)
 	rootCmd.AddCommand(search.SearchCmd)
+	rootCmd.AddCommand(check.CheckCmd)
 
 }
 

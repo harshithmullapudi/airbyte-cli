@@ -11,6 +11,7 @@ var Log = logging.MustGetLogger("example")
 var Error = Log.Error
 var Notice = Log.Notice
 var Info = Log.Info
+var Debug = Log.Debug
 
 // Example format string. Everything except the message has a custom color
 // which is dependent on the log level. Many fields have a custom output

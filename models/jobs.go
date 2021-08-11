@@ -24,6 +24,12 @@ type JobDetail struct {
 	Status     string
 }
 
+type JobInfo struct {
+	*JobDetail
+	Succeded bool
+	Logs     Logs
+}
+
 type Logs struct {
 	LogLines []string
 }

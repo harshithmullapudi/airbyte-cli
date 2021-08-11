@@ -9,6 +9,7 @@ type SourceDefinition struct {
 	Icon               string
 }
 
+type SourceDefinitions []SourceDefinition
 type Source struct {
 	SourceDefinitionId      string
 	SourceId                string
@@ -22,5 +23,15 @@ type Source struct {
 type Sources []Source
 
 type SourceResponse struct {
-	Sources []Source
+	Sources Sources
+}
+
+type SourceDefinitionResponse struct {
+	SourceDefinitions SourceDefinitions
+}
+
+type SourceCheckResponse struct {
+	Status  string
+	Message string
+	JobInfo JobInfo
 }

@@ -13,35 +13,27 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package get
+package check
 
 import (
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/spf13/cobra"
 )
 
-// getCmd represents the get command
-var GetCmd = &cobra.Command{
-	Use:   "get [sub]",
+// checkCmd represents the get command
+var CheckCmd = &cobra.Command{
+	Use:   "check [sub]",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Get details about sources, destinations, connections",
-	Long:  `Get details about sources, destinations, connections`,
+	Short: "Check source, connection, destination",
+	Long:  `Validate if the config and secrets are right for source, destination, connection`,
 	Run: func(cmd *cobra.Command, args []string) {
-		logger.Notice("Kindly specify resource. Example (sources, connections, destinations, source, destination, connection)")
+		logger.Notice("Kindly specify resource. Example (source, destination, connection)")
 	},
 }
 
 func init() {
 	// sub commands for get
-	GetCmd.AddCommand(SourcesSubCmd)
-	GetCmd.AddCommand(SourceDefinitionsSubCmd)
-	GetCmd.AddCommand(DestinationsSubCmd)
-	GetCmd.AddCommand(ConnectionsSubCmd)
-	GetCmd.AddCommand(SourceSubCmd)
-	GetCmd.AddCommand(ConnectionSubCmd)
-	GetCmd.AddCommand(JobsSubCmd)
-	GetCmd.AddCommand(JobSubCmd)
-	GetCmd.AddCommand(DestinationsSubCmd)
+	CheckCmd.AddCommand(SourceSubCmd)
 
 	// Here you will define your flags and configuration settings.
 
