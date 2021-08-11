@@ -24,10 +24,10 @@ import (
 var CheckCmd = &cobra.Command{
 	Use:   "check [sub]",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Check source, connection, destination",
-	Long:  `Validate if the config and secrets are right for source, destination, connection`,
+	Short: "Check connection to Source/Destination",
+	Long:  `Validate if the config and secrets are right for Source/Destination`,
 	Run: func(cmd *cobra.Command, args []string) {
-		logger.Notice("Kindly specify resource. Example (source, destination, connection)")
+		logger.Notice("Kindly specify resource. Example (source, destination)")
 	},
 }
 

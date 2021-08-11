@@ -24,8 +24,8 @@ import (
 var GetCmd = &cobra.Command{
 	Use:   "get [sub]",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Get details about sources, destinations, connections",
-	Long:  `Get details about sources, destinations, connections`,
+	Short: "Get configuration of Sources/Destinations/Connections",
+	Long:  `Get configuration of Sources/Destinations/Connections`,
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.Notice("Kindly specify resource. Example (sources, connections, destinations, source, destination, connection)")
 	},

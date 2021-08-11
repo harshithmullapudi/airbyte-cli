@@ -24,10 +24,10 @@ import (
 var SearchCmd = &cobra.Command{
 	Use:   "search",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "Search in sources",
+	Short: "Search in Sources/Connections",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		logger.Notice("Kindly specify resource. Example (sources)")
+		logger.Notice("Kindly specify resource. Example (sources, connections)")
 	},
 }
 
