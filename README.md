@@ -105,6 +105,11 @@ You can create and validation sources through a yaml file.
 
 1. Create a folder in your home example: /Users/name/home/load
 2. Create a yaml file SOURCE_CONNECTION.yaml
+3. Hurray
+
+```bash
+$ airbyte create -f /Users/name/home/load -c
+```
 
 
 Validate sources before creation
