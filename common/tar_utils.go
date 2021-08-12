@@ -16,6 +16,8 @@ import (
 	"time"
 )
 
+var FILE_NAME = "archive.tar"
+
 // Download the config from the airbyte API
 func DownloadFile() (err error) {
 	var DOWNLOAD_CONFIG = "/api/v1/deployment/export"
@@ -24,7 +26,7 @@ func DownloadFile() (err error) {
 	dirname, err := os.UserHomeDir()
 
 	// Create the file
-	out, err := os.Create(dirname + "/.airbyte/archive.tar")
+	out, err := os.Create(dirname + "/.airbyte/" + FILE_NAME)
 	if err != nil {
 		return err
 	}
@@ -155,6 +157,24 @@ func CopyFile(from string, to string) error {
 
 	if err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func CleanUp() error {
+	dirname, _ := os.UserHomeDir()
+
+	dst := dirname + "/.airbyte/"
+
+	e := os.Remove(dst + FILE_NAME)
+	if e != nil {
+		return e
+	}
+
+	e = os.RemoveAll(dst + "airbyte_config")
+	if e != nil {
+		return e
 	}
 
 	return nil

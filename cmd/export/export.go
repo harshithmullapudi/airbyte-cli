@@ -39,17 +39,17 @@ var ExportCmd = &cobra.Command{
 
 		logger.Info("Downloading the config...")
 
-		// err := common.DownloadFile()
+		err := common.DownloadFile()
 
-		// if err != nil {
-		// 	logger.Error(err)
-		// }
+		if err != nil {
+			logger.Error(err)
+		}
 
-		// err = common.Untar()
+		err = common.Untar()
 
-		// if err != nil {
-		// 	logger.Error(err)
-		// }
+		if err != nil {
+			logger.Error(err)
+		}
 
 		logger.Info("Downloaded and extracted the config.")
 
@@ -57,7 +57,7 @@ var ExportCmd = &cobra.Command{
 			cobra.CheckErr(err)
 		}
 
-		err := common.CopyConfigToTarget(target)
+		err = common.CopyConfigToTarget(target)
 
 		if err != nil {
 			logger.Error(err)
@@ -65,6 +65,13 @@ var ExportCmd = &cobra.Command{
 		}
 
 		logger.Notice("Exported successfully")
+
+		logger.Info("Cleaning up...")
+		err = common.CleanUp()
+		if err != nil {
+			logger.Error(err)
+			cobra.CheckErr(err)
+		}
 	},
 }
 

@@ -10,6 +10,7 @@ This is the next generation Go based Airbyte CLI.
   - [search](#search)
   - [check](#check)
   - [logs](#logs)
+  - [export](#export)
 
 ##  Setup
 1. Clone this repo to your working environment  
