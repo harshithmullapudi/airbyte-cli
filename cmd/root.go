@@ -20,6 +20,7 @@ import (
 	"os"
 
 	"github.com/harshithmullapudi/airbyte/cmd/check"
+	"github.com/harshithmullapudi/airbyte/cmd/create"
 	"github.com/harshithmullapudi/airbyte/cmd/export"
 	"github.com/harshithmullapudi/airbyte/cmd/get"
 	"github.com/harshithmullapudi/airbyte/cmd/search"
@@ -63,6 +64,7 @@ func init() {
 	rootCmd.AddCommand(search.SearchCmd)
 	rootCmd.AddCommand(check.CheckCmd)
 	rootCmd.AddCommand(export.ExportCmd)
+	rootCmd.AddCommand(create.CreateCmd)
 
 }
 

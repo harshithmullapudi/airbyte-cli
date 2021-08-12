@@ -21,7 +21,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/harshithmullapudi/airbyte/airbyte"
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/common"
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/harshithmullapudi/airbyte/models"
@@ -56,7 +56,7 @@ var setCmd = &cobra.Command{
 		workspaceId.Scan()
 
 		var workspace models.Workspace
-		workspace, error = airbyte.CheckIfWorkspaceExist(workspaceId.Text())
+		workspace, error = api.CheckIfWorkspaceExist(workspaceId.Text())
 
 		if error != nil {
 			cobra.CheckErr(error)

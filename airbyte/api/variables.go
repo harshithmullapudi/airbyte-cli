@@ -9,6 +9,7 @@ var DESTINATIONS = "/api/v1/destinations"
 
 var GET_WORKSPACES = WORKSPACES + "/get"
 
+var CREATE_SOURCE = SOURCES + "/create"
 var GET_SOURCES = SOURCES + "/list"
 var GET_SOURCE = SOURCES + "/get"
 var SOURCE_CHECK_CONNECTION = SOURCES + "/check_connection"
@@ -25,3 +26,5 @@ var GET_DESTINATION = DESTINATIONS + "/get"
 var GET_SOURCE_DEFINITIONS = SOURCE_DEFINITIONS + "/list"
 
 var DOWNLOAD_CONFIG = "/api/v1/deployment/export"
+
+var SOURCE_CONNECTION_CHECK = "/api/v1/scheduler/sources/check_connection"

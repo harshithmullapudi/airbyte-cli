@@ -66,7 +66,6 @@ var ExportCmd = &cobra.Command{
 
 		logger.Notice("Exported successfully")
 
-		logger.Info("Cleaning up...")
 		err = common.CleanUp()
 		if err != nil {
 			logger.Error(err)

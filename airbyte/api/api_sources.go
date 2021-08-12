@@ -66,3 +66,34 @@ func CheckSourceConnection(sourceId string) (models.SourceCheckResponse, error) 
 
 	return sourceCheckResponse, nil
 }
+
+// Create Source
+func CreateSource(source models.Source) (models.Source, error) {
+	var API_URL string = common.GetFullApiURL(CREATE_SOURCE)
+
+	var workspaceId string
+
+	_, err := CheckIfWorkspaceExist(source.WorkspaceId)
+
+	workspaceId = source.WorkspaceId
+
+	if err != nil {
+		workspaceId = viper.GetString("workspace_id")
+	}
+
+	respBody, err := common.ApiCallInterface(API_URL, map[string]interface{}{
+		"sourceDefinitionId":      source.SourceDefinitionId,
+		"connectionConfiguration": source.ConnectionConfiguration,
+		"workspaceId":             workspaceId,
+		"name":                    source.Name,
+	})
+
+	var sourceResponse models.Source
+	json.Unmarshal(respBody, &sourceResponse)
+
+	if err != nil {
+		return models.Source{}, err
+	}
+
+	return sourceResponse, nil
+}

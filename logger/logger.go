@@ -9,6 +9,7 @@ import (
 var Log = logging.MustGetLogger("example")
 
 var Error = Log.Error
+var Errorf = Log.Errorf
 var Notice = Log.Notice
 var Info = Log.Info
 var Debug = Log.Debug

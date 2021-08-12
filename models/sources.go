@@ -11,12 +11,12 @@ type SourceDefinition struct {
 
 type SourceDefinitions []SourceDefinition
 type Source struct {
-	SourceDefinitionId      string
-	SourceId                string
-	WorkspaceId             string
-	ConnectionConfiguration map[string]interface{}
-	Name                    string
-	SourceName              string
+	SourceDefinitionId      string                 `yaml:"sourceDefinitionId"`
+	SourceId                string                 `yaml:"sourceId"`
+	WorkspaceId             string                 `yaml:"workspaceId"`
+	ConnectionConfiguration map[string]interface{} `yaml:"configuration"`
+	Name                    string                 `yaml:"name"`
+	SourceName              string                 `yaml:"sourceName"`
 	SourceDefinition        SourceDefinition
 }
 
@@ -34,4 +34,9 @@ type SourceCheckResponse struct {
 	Status  string
 	Message string
 	JobInfo JobInfo
+}
+
+type SourceCheckConfig struct {
+	SourceDefinitionId      string
+	ConnectionConfiguration map[string]interface{}
 }
