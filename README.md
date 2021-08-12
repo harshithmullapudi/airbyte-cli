@@ -91,3 +91,9 @@ Get logs for a job
 ```bash
 $ airbyte logs [jobId]
 ```
+
+## export
+Export sources, connections and destinations to a target folder
+```bash
+$ airbyte export -t [absolute path to target folder]
+```
