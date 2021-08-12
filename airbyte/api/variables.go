@@ -1,4 +1,4 @@
-package airbyte
+package api
 
 var SOURCES = "/api/v1/sources"
 var SOURCE_DEFINITIONS = "/api/v1/source_definitions"
@@ -23,3 +23,5 @@ var GET_DESTINATIONS = DESTINATIONS + "/list"
 var GET_DESTINATION = DESTINATIONS + "/get"
 
 var GET_SOURCE_DEFINITIONS = SOURCE_DEFINITIONS + "/list"
+
+var DOWNLOAD_CONFIG = "/api/v1/deployment/export"

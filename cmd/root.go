@@ -20,8 +20,10 @@ import (
 	"os"
 
 	"github.com/harshithmullapudi/airbyte/cmd/check"
+	"github.com/harshithmullapudi/airbyte/cmd/export"
 	"github.com/harshithmullapudi/airbyte/cmd/get"
 	"github.com/harshithmullapudi/airbyte/cmd/search"
+	"github.com/harshithmullapudi/airbyte/logger"
 
 	"github.com/spf13/cobra"
 
@@ -60,6 +62,7 @@ func init() {
 	rootCmd.AddCommand(get.GetCmd)
 	rootCmd.AddCommand(search.SearchCmd)
 	rootCmd.AddCommand(check.CheckCmd)
+	rootCmd.AddCommand(export.ExportCmd)
 
 }
 
@@ -79,6 +82,10 @@ func initConfig() {
 			cobra.CheckErr(err)
 		}
 		defer f.Close()
+	}
+
+	if err := os.Mkdir(dirname+"/.airbyte", 0755); !os.IsExist(err) {
+		logger.Info("Create .airbyte folder")
 	}
 
 	if cfgFile != "" {

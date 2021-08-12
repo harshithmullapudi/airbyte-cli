@@ -6,12 +6,13 @@ import (
 	"math"
 	"strings"
 
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/harshithmullapudi/airbyte/models"
 )
 
 func PaginateConnections(offset int, number int, status string) (models.Connections, error) {
-	connections, _ := GetConnections()
+	connections, _ := api.GetConnections()
 	logger.Log.Info("Fetching connections from API with offset: " + fmt.Sprintf("%d", offset))
 	logger.Log.Info("Total connections: " + fmt.Sprintf("%d", len(connections)))
 
@@ -37,7 +38,7 @@ func PaginateConnections(offset int, number int, status string) (models.Connecti
 func FetchConnection(connectionId string) (models.Connection, error) {
 	logger.Log.Info("Fetching connection from API for connectionId: " + connectionId)
 
-	connection, err := GetConnection(connectionId)
+	connection, err := api.GetConnection(connectionId)
 
 	return connection, err
 }
@@ -48,7 +49,7 @@ func SearchConnection(searchString string) (models.Connections, error) {
 		return models.Connections{}, errors.New("you passed an empty string")
 	}
 
-	connections, _ := GetConnections()
+	connections, _ := api.GetConnections()
 	var filteredConnections models.Connections
 
 	for _, c := range connections {

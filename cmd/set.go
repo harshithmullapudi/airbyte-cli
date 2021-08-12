@@ -35,7 +35,7 @@ var setCmd = &cobra.Command{
 	Short: "Set your airbyte url and workspaceID",
 	Long:  `You need to set airbyte url and workspaceID`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Print("Enter airbyte api URL here: ")
+		fmt.Print("Enter airbyte URL here: ")
 		URL := bufio.NewScanner(os.Stdin)
 		URL.Scan()
 		_, error := common.CheckForURL(URL.Text())
@@ -48,7 +48,7 @@ var setCmd = &cobra.Command{
 		// Remove trailing slash if any
 		api_url := strings.TrimSuffix(URL.Text(), "/")
 
-		viper.Set("api_url", api_url)
+		viper.Set("airbyte_url", api_url)
 
 		fmt.Print("Enter current workspace: ")
 

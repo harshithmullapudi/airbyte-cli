@@ -2,6 +2,7 @@ package get
 
 import (
 	"github.com/harshithmullapudi/airbyte/airbyte"
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/models"
 	"github.com/spf13/cobra"
 )
@@ -40,7 +41,7 @@ var ConnectionSubCmd = &cobra.Command{
 		var connectionId string = args[0]
 		format, _ := cmd.Flags().GetString("format")
 
-		connection, err := airbyte.GetConnection(connectionId)
+		connection, err := api.GetConnection(connectionId)
 
 		if err != nil {
 			cobra.CheckErr(err)

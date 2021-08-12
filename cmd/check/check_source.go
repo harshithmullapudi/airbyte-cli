@@ -3,7 +3,7 @@ package check
 import (
 	"fmt"
 
-	"github.com/harshithmullapudi/airbyte/airbyte"
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/harshithmullapudi/airbyte/models"
 	"github.com/spf13/cobra"
@@ -17,7 +17,7 @@ var SourceSubCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		var sourceId string = args[0]
 		var sourceCheck models.SourceCheckResponse
-		sourceCheck, err := airbyte.CheckSourceConnection(sourceId)
+		sourceCheck, err := api.CheckSourceConnection(sourceId)
 
 		if err != nil {
 			cobra.CheckErr(err)

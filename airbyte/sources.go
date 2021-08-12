@@ -6,12 +6,13 @@ import (
 	"math"
 	"strings"
 
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/harshithmullapudi/airbyte/models"
 )
 
 func PaginateSources(offset int, number int) (models.Sources, error) {
-	sources, _ := GetSources()
+	sources, _ := api.GetSources()
 	logger.Log.Info("Fetching sources from API with offset: " + fmt.Sprintf("%d", offset))
 	logger.Log.Info("Total sources: " + fmt.Sprintf("%d", len(sources)))
 
@@ -24,7 +25,7 @@ func PaginateSources(offset int, number int) (models.Sources, error) {
 func FetchSource(sourceId string) (models.Source, error) {
 	logger.Log.Info("Fetching source from API for sourceId: " + sourceId)
 
-	source, err := GetSource(sourceId)
+	source, err := api.GetSource(sourceId)
 	return source, err
 }
 
@@ -33,7 +34,7 @@ func SearchSource(searchString string) (models.Sources, error) {
 		return models.Sources{}, errors.New("you passed an empty string")
 	}
 
-	sources, _ := GetSources()
+	sources, _ := api.GetSources()
 	var filteredSources models.Sources
 
 	for _, s := range sources {

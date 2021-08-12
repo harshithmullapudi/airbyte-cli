@@ -1,4 +1,4 @@
-package airbyte
+package api
 
 import (
 	"encoding/json"
@@ -14,7 +14,7 @@ func GetDestionations() (models.Destinations, error) {
 
 	workspaceId := viper.GetString("workspace_id")
 
-	respBody, err := ApiCall(API_URL, map[string]string{
+	respBody, err := common.ApiCall(API_URL, map[string]string{
 		"workspaceId": workspaceId,
 	})
 
@@ -33,7 +33,7 @@ func GetDestination(destinationId string) (models.Destination, error) {
 
 	var API_URL string = common.GetFullApiURL(GET_DESTINATION)
 
-	respBody, err := ApiCall(API_URL, map[string]string{
+	respBody, err := common.ApiCall(API_URL, map[string]string{
 		"destinationId": destinationId,
 	})
 

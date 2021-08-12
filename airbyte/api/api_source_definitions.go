@@ -1,4 +1,4 @@
-package airbyte
+package api
 
 import (
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 func GetSourceDefinitions() (models.SourceDefinitions, error) {
 	var API_URL string = common.GetFullApiURL(GET_SOURCE_DEFINITIONS)
 
-	respBody, err := ApiCall(API_URL, nil)
+	respBody, err := common.ApiCall(API_URL, nil)
 
 	//Handle Error
 	if err != nil {

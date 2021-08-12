@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/common"
 	"github.com/harshithmullapudi/airbyte/logger"
 	"github.com/harshithmullapudi/airbyte/models"
@@ -13,7 +14,7 @@ import (
 
 func CheckIfWorkspaceExist(workspaceId string) (models.Workspace, error) {
 	logger.Info("Fetching workspace from API")
-	var API_URL string = common.GetFullApiURL(GET_WORKSPACES)
+	var API_URL string = common.GetFullApiURL(api.GET_WORKSPACES)
 
 	postBody, _ := json.Marshal(map[string]string{
 		"workspaceId": workspaceId,

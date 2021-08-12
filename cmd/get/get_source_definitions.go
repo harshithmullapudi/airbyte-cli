@@ -2,6 +2,7 @@ package get
 
 import (
 	"github.com/harshithmullapudi/airbyte/airbyte"
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/harshithmullapudi/airbyte/models"
 	"github.com/spf13/cobra"
 )
@@ -13,7 +14,7 @@ var SourceDefinitionsSubCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		format, _ := cmd.Flags().GetString("format")
 		var source_definitions models.SourceDefinitions
-		source_definitions, err := airbyte.GetSourceDefinitions()
+		source_definitions, err := api.GetSourceDefinitions()
 
 		if err != nil {
 			cobra.CheckErr(err)

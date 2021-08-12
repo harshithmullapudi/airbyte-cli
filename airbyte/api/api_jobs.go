@@ -1,4 +1,4 @@
-package airbyte
+package api
 
 import (
 	"bytes"

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/harshithmullapudi/airbyte/airbyte"
+	"github.com/harshithmullapudi/airbyte/airbyte/api"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +18,7 @@ var logsCmd = &cobra.Command{
 		jobId, _ = strconv.Atoi(args[0])
 
 		attemptNumber, _ := cmd.Flags().GetInt("attempt")
-		job, err := airbyte.GetJob(jobId)
+		job, err := api.GetJob(jobId)
 		if err != nil {
 			cobra.CheckErr(err)
 		}

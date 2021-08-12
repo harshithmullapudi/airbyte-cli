@@ -1,4 +1,4 @@
-package airbyte
+package api
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ func GetSources() (models.Sources, error) {
 
 	workspaceId := viper.GetString("workspace_id")
 
-	respBody, err := ApiCall(API_URL, map[string]string{
+	respBody, err := common.ApiCall(API_URL, map[string]string{
 		"workspaceId": workspaceId,
 	})
 
@@ -35,7 +35,7 @@ func GetSource(sourceId string) (models.Source, error) {
 
 	var API_URL string = common.GetFullApiURL(GET_SOURCE)
 
-	respBody, err := ApiCall(API_URL, map[string]string{
+	respBody, err := common.ApiCall(API_URL, map[string]string{
 		"sourceId": sourceId,
 	})
 
@@ -53,7 +53,7 @@ func GetSource(sourceId string) (models.Source, error) {
 func CheckSourceConnection(sourceId string) (models.SourceCheckResponse, error) {
 	var API_URL string = common.GetFullApiURL(SOURCE_CHECK_CONNECTION)
 
-	respBody, err := ApiCall(API_URL, map[string]string{
+	respBody, err := common.ApiCall(API_URL, map[string]string{
 		"sourceId": sourceId,
 	})
 
