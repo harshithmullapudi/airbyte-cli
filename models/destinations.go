@@ -8,12 +8,12 @@ type DestinationDefinition struct {
 }
 
 type Destination struct {
-	DestinationDefinitionId string
-	DestinationId           string
-	WorkspaceId             string
-	ConnectionConfiguration map[string]interface{}
-	Name                    string
-	DestinationName         string
+	DestinationDefinitionId string                 `yaml:"destinationDefinitionId"`
+	DestinationId           string                 `yaml:"destinationId"`
+	WorkspaceId             string                 `yaml:"workspaceId"`
+	ConnectionConfiguration map[string]interface{} `yaml:"configuration"`
+	Name                    string                 `yaml:"name"`
+	DestinationName         string                 `yaml:"destinationName"`
 }
 
 type Destinations []Destination

@@ -32,8 +32,24 @@ type Connection struct {
 	IsSyncing              bool
 }
 
+type ConnectionShort struct {
+	ConnectionId    string      `yaml:"connectionId"`
+	Name            string      `yaml:"name"`
+	NamespaceFormat string      `yaml:"namespaceForm"`
+	Prefix          string      `yaml:"prefix"`
+	SourceId        string      `yaml:"sourceId"`
+	DestinationId   string      `yaml:"destinationId"`
+	OperationIds    []string    `yaml:"operationIds"`
+	Catalog         interface{} `yaml:"catalog"`
+	Manual          bool        `yaml:"manual"`
+	Schedule        Schedule    `yaml:"schedule"`
+	Status          string      `yaml:"status"`
+}
+
 type Connections []Connection
 
 type ConnectionResponse struct {
 	Connections []Connection
 }
+
+type ConnectionsShort []ConnectionShort

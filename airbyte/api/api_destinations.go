@@ -47,3 +47,34 @@ func GetDestination(destinationId string) (models.Destination, error) {
 
 	return destinationResponse, nil
 }
+
+// Create Destination
+func CreateDestination(destination models.Destination) (models.Destination, error) {
+	var API_URL string = common.GetFullApiURL(CREATE_DESTINATION)
+
+	var workspaceId string
+
+	_, err := CheckIfWorkspaceExist(destination.WorkspaceId)
+
+	workspaceId = destination.WorkspaceId
+
+	if err != nil {
+		workspaceId = viper.GetString("workspace_id")
+	}
+
+	respBody, err := common.ApiCallInterface(API_URL, map[interface{}]interface{}{
+		"destinationDefinitionId": destination.DestinationDefinitionId,
+		"connectionConfiguration": destination.ConnectionConfiguration,
+		"workspaceId":             workspaceId,
+		"name":                    destination.Name,
+	})
+
+	var destinationResponse models.Destination
+	json.Unmarshal(respBody, &destinationResponse)
+
+	if err != nil {
+		return models.Destination{}, err
+	}
+
+	return destinationResponse, nil
+}

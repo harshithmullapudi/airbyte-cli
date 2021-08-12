@@ -101,10 +101,10 @@ $ airbyte export -t [absolute path to target folder]
 
 ## create
 
-You can create and validation sources through a yaml file. 
+You can create and validation sources, destinations and connections through a yaml file. 
 
 1. Create a folder in your home example: /Users/name/home/load
-2. Create a yaml file SOURCE_CONNECTION.yaml
+2. Create a yaml file SOURCE_CONNECTION.yaml for sources, DESTINATION_CONNECTION.yaml for destinations and STANDARD_SYNC.yaml for connections
 3. Hurray
 
 ```bash
@@ -112,7 +112,7 @@ $ airbyte create -f /Users/name/home/load -c
 ```
 
 
-Validate sources before creation
+Validate sources, destinations and connections before creation
 ```bash
 $ airbyte create -f [path to config folder]
 ```

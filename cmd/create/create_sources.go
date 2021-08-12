@@ -18,7 +18,7 @@ func CreateSources(configFolderPath string, create bool) error {
 	// Check if sources config file exists
 	_, err := os.Stat(configFolderPath + "/" + SOURCES_CONFIG_FILE)
 	if os.IsNotExist(err) {
-		logger.Errorf("No config file found for sources. Skipping sources")
+		logger.Warning("No config file found for sources. Skipping sources")
 		return err
 	}
 
@@ -40,7 +40,7 @@ func CreateSources(configFolderPath string, create bool) error {
 		err = CreateSource(source)
 
 		if err != nil {
-			logger.Error("Source creation for " + source.Name + " has failed. " + err.Error() + " . Skipping creation for this source")
+			logger.Error("Source creation for " + source.Name + " has failed. " + err.Error() + ". Skipping creation for this source")
 		}
 
 	}

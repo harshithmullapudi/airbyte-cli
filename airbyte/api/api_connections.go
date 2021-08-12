@@ -47,3 +47,34 @@ func GetConnection(connectionId string) (models.Connection, error) {
 
 	return connectionResponse, nil
 }
+
+func CreateConnection(connection models.ConnectionShort) (models.ConnectionShort, error) {
+	var API_URL string = common.GetFullApiURL(CREATE_CONNECTION)
+
+	var schedule interface{}
+
+	schedule = connection.Schedule
+
+	if connection.Manual {
+		schedule = nil
+	}
+
+	respBody, err := common.ApiCallInterface(API_URL, map[interface{}]interface{}{
+		"name":          connection.Name,
+		"prefix":        connection.Prefix,
+		"sourceId":      connection.SourceId,
+		"destinationId": connection.DestinationId,
+		"syncCatalog":   connection.Catalog,
+		"schedule":      schedule,
+		"status":        connection.Status,
+	})
+
+	var connectionResponse models.ConnectionShort
+	json.Unmarshal(respBody, &connectionResponse)
+
+	if err != nil {
+		return models.ConnectionShort{}, err
+	}
+
+	return connectionResponse, nil
+}

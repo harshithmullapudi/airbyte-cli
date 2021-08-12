@@ -81,7 +81,7 @@ func CreateSource(source models.Source) (models.Source, error) {
 		workspaceId = viper.GetString("workspace_id")
 	}
 
-	respBody, err := common.ApiCallInterface(API_URL, map[string]interface{}{
+	respBody, err := common.ApiCallInterface(API_URL, map[interface{}]interface{}{
 		"sourceDefinitionId":      source.SourceDefinitionId,
 		"connectionConfiguration": source.ConnectionConfiguration,
 		"workspaceId":             workspaceId,

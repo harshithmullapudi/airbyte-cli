@@ -13,6 +13,7 @@ var Errorf = Log.Errorf
 var Notice = Log.Notice
 var Info = Log.Info
 var Debug = Log.Debug
+var Warning = Log.Warning
 
 // Example format string. Everything except the message has a custom color
 // which is dependent on the log level. Many fields have a custom output
