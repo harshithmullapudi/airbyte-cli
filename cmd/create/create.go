@@ -48,12 +48,12 @@ var CreateCmd = &cobra.Command{
 
 		// Start with sources
 
-		// logger.Debug("Starting sources creation")
-		// CreateSources(configFolder, create)
+		logger.Debug("Starting sources creation")
+		CreateSources(configFolder, create)
 
-		// // Create destinations
-		// logger.Debug("Starting destinations creation")
-		// CreateDestinations(configFolder, create)
+		// Create destinations
+		logger.Debug("Starting destinations creation")
+		CreateDestinations(configFolder, create)
 
 		// Create Connections
 		logger.Debug("Starting connections creation")
