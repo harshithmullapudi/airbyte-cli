@@ -11,11 +11,12 @@ This is the next generation Go based Airbyte CLI.
   - [check](#check)
   - [logs](#logs)
   - [export](#export)
+  - [create](#create)
 
 ##  Setup
-1. Clone this repo to your working environment  
+1. Clone this repo to your working environment
    `git clone https://github.com/harshithmullapudi/airbyte-cli.git`
-2. Install go (if not installed already).  
+2. Install go (if not installed already).
    `brew install go` (for mac users)
 3. Jump to the airbyte-cli directory and run
    `go install .`
@@ -49,12 +50,21 @@ $ airbyte <command> <subcommand> -h
 ```
 ## get
 Return all
+   - workspaces (`/v1/workspaces/list`)
    - sources (`/v1/sources/list`)
    - destinations (`/v1/destinations/list`)
    - connections (`/v1/web_backend/connections/list`)
 
-You can use page(p) and offset(o) to fetch sources respectively. 
+You can use page(p) and offset(o) to fetch sources respectively.
 
+To list workspaces, the command would be:
+```bash
+$ airbyte get workspaces
+```
+To get a workspace, the command would be:
+```bash
+$ airbyte get workspace [workspaceId]
+```
 To list sources, the command would be:
 ```bash
 $ airbyte get sources
@@ -101,7 +111,7 @@ $ airbyte export -t [absolute path to target folder]
 
 ## create
 
-You can create and validation sources, destinations and connections through a yaml file. 
+You can create and validation sources, destinations and connections through a yaml file.
 
 1. Create a folder in your home example: /Users/name/home/load
 2. Create a yaml file SOURCE_CONNECTION.yaml for sources, DESTINATION_CONNECTION.yaml for destinations and STANDARD_SYNC.yaml for connections
@@ -117,7 +127,7 @@ Validate sources, destinations and connections before creation
 $ airbyte create -f [path to config folder]
 ```
 
-You can pass -c as a flag to create the sources which will validate the source and skip it either if validation failes or if it finds sourceId and 
+You can pass -c as a flag to create the sources which will validate the source and skip it either if validation failes or if it finds sourceId and
 a source for that respective Id.
 
 ```bash
