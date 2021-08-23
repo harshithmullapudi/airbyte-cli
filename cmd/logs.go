@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 
@@ -14,6 +15,11 @@ var logsCmd = &cobra.Command{
 	Long: `Fetch logs for a job
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
+
+		if len(args) == 0 {
+			cobra.CheckErr(errors.New("Missing job ID"))
+		}
+
 		var jobId int
 		jobId, _ = strconv.Atoi(args[0])
 
