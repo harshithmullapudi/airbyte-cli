@@ -193,3 +193,48 @@ func PrintSourceDefinitionsTable(source_definitions models.SourceDefinitions) {
 	}
 	t.Render()
 }
+
+//Print Workspaces
+func PrintWorkspacesTable(workspaces models.Workspaces) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Workspace ID", "Workspace Name", "Email", "Slug"})
+	for index, w := range workspaces {
+		t.AppendRow([]interface{}{index + 1, w.WorkspaceId, w.Name, w.Email, w.Slug})
+	}
+	t.Render()
+}
+
+func PrintWorkspaceTable(workspace models.Workspace) {
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"#", "Workspace ID", "Workspace Name", "Email", "Slug"})
+
+	t.AppendRow([]interface{}{1, workspace.WorkspaceId, workspace.Name, workspace.Email, workspace.Slug})
+
+	t.Render()
+}
+
+func PrintWorkspaces(workspaces models.Workspaces) {
+
+	b, err := json.MarshalIndent(workspaces, "", "  ")
+
+	if err != nil {
+		logger.Error(err)
+		return
+	}
+
+	fmt.Println(string(b))
+}
+
+func PrintWorkspace(workspace models.Workspace) {
+
+	b, err := json.MarshalIndent(workspace, "", "  ")
+
+	if err != nil {
+		logger.Error(err)
+		return
+	}
+
+	fmt.Println(string(b))
+}

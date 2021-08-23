@@ -27,12 +27,14 @@ var GetCmd = &cobra.Command{
 	Short: "Get configuration of Sources/Destinations/Connections",
 	Long:  `Get configuration of Sources/Destinations/Connections`,
 	Run: func(cmd *cobra.Command, args []string) {
-		logger.Notice("Kindly specify resource. Example (sources, connections, destinations, source, destination, connection)")
+		logger.Notice("Kindly specify resource. Example (workspaces, sources, connections, destinations, workspace, source, destination, connection)")
 	},
 }
 
 func init() {
 	// sub commands for get
+	GetCmd.AddCommand(WorkspaceSubCmd)
+	GetCmd.AddCommand(WorkspacesSubCmd)
 	GetCmd.AddCommand(SourcesSubCmd)
 	GetCmd.AddCommand(SourceDefinitionsSubCmd)
 	GetCmd.AddCommand(DestinationsSubCmd)

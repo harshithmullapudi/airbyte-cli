@@ -7,7 +7,8 @@ var CONNECTIONS = "/api/v1/web_backend/connections"
 var JOBS = "/api/v1/jobs"
 var DESTINATIONS = "/api/v1/destinations"
 
-var GET_WORKSPACES = WORKSPACES + "/get"
+var GET_WORKSPACES = WORKSPACES + "/list"
+var GET_WORKSPACE = WORKSPACES + "/get"
 
 var CREATE_SOURCE = SOURCES + "/create"
 var GET_SOURCES = SOURCES + "/list"

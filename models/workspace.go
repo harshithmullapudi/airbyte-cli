@@ -6,3 +6,9 @@ type Workspace struct {
 	WorkspaceId string
 	Slug        string
 }
+
+type Workspaces []Workspace
+
+type WorkspaceResponse struct {
+	Workspaces Workspaces
+}
