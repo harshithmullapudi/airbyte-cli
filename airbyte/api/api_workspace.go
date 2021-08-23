@@ -10,8 +10,57 @@ import (
 	"github.com/harshithmullapudi/airbyte/models"
 )
 
-func CheckIfWorkspaceExist(workspaceId string) (models.Workspace, error) {
+// Get Workspaces - /v1/workspaces/list
+func GetWorkspaces() (models.Workspaces, error) {
+
 	var API_URL string = common.GetFullApiURL(GET_WORKSPACES)
+
+	respBody, err := common.ApiCall(API_URL, map[string]string{})
+
+	//Handle Error
+	if err != nil {
+		return models.Workspaces{}, err
+	}
+
+	var workspaceResponse models.WorkspaceResponse
+	json.Unmarshal(respBody, &workspaceResponse)
+
+	return workspaceResponse.Workspaces, nil
+}
+
+// Get Connection - /api/v1/workspaces/get
+func GetWorkspace(workspaceId string) (models.Workspace, error) {
+
+	//Get First Workspace
+	if workspaceId == "" {
+		workspaces, err := GetWorkspaces()
+
+		//Handle Error
+		if err != nil {
+			return models.Workspace{}, err
+		}
+
+		workspaceId = workspaces[0].WorkspaceId
+	}
+
+	var API_URL string = common.GetFullApiURL(GET_WORKSPACE)
+
+	respBody, err := common.ApiCall(API_URL, map[string]string{
+		"workspaceId": workspaceId,
+	})
+
+	if err != nil {
+		return models.Workspace{}, err
+	}
+
+	var workspaceResponse models.Workspace
+	json.Unmarshal(respBody, &workspaceResponse)
+
+	return workspaceResponse, nil
+}
+
+func CheckIfWorkspaceExist(workspaceId string) (models.Workspace, error) {
+	var API_URL string = common.GetFullApiURL(GET_WORKSPACE)
 
 	postBody, _ := json.Marshal(map[string]string{
 		"workspaceId": workspaceId,
