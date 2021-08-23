@@ -50,13 +50,13 @@ var setCmd = &cobra.Command{
 
 		viper.Set("airbyte_url", api_url)
 
-		fmt.Print("Enter current workspace: ")
+		fmt.Print("Enter current workspace (leave blank for default): ")
 
 		workspaceId := bufio.NewScanner(os.Stdin)
 		workspaceId.Scan()
 
 		var workspace models.Workspace
-		workspace, error = api.CheckIfWorkspaceExist(workspaceId.Text())
+		workspace, error = api.GetWorkspace(workspaceId.Text())
 
 		if error != nil {
 			cobra.CheckErr(error)
