@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/harshithmullapudi/airbyte/cmd/cdk"
 	"github.com/harshithmullapudi/airbyte/cmd/check"
 	"github.com/harshithmullapudi/airbyte/cmd/create"
 	"github.com/harshithmullapudi/airbyte/cmd/export"
@@ -65,6 +66,7 @@ func init() {
 	rootCmd.AddCommand(check.CheckCmd)
 	rootCmd.AddCommand(export.ExportCmd)
 	rootCmd.AddCommand(create.CreateCmd)
+	rootCmd.AddCommand(cdk.CdkCmd)
 
 }
 
