@@ -1,3 +1,5 @@
+# Deprecated. Airbyte launched ocativia which is Airbyte own cli
+
 # Airbyte CLI
 
 This is the next generation Go based Airbyte CLI.
