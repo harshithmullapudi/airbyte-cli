@@ -1,4 +1,4 @@
-# Deprecated. Airbyte launched ocativia which is Airbyte own cli
+# Deprecated. Airbyte launched octavia-cli which is Airbyte own cli
 
 # Airbyte CLI
 
